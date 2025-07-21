@@ -14,8 +14,16 @@ const CreateTask = ({ setTasks }) => {
     e.preventDefault();
 
     if (!title.trim() || !description.trim()) {
-      alert("We need both title and description to create a task");
+      alert("We need a title and description to create a task!");
     } else {
+      // if (!title.trim()) {
+      //   let date = new Date().toLocaleString();
+      //   let time = new Date().toLocaleTimeString();
+      //   setTitle(`Task ${time} :: ${date}`);
+      // }
+      // if (!description.trim()) {
+      //   setDescription(title);
+      // }
       const newTask = {
         id: crypto.randomUUID(),
         title: title,
@@ -31,7 +39,7 @@ const CreateTask = ({ setTasks }) => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-gray-100 mt-10 rounded-lg shadow">
+    <div className="max-w-xl mx-auto p-6 bg-gray-100 rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4 text-center text-black">
         What are we up to today?
       </h2>
@@ -73,7 +81,7 @@ const CreateTask = ({ setTasks }) => {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+          className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
         >
           Create Task
         </button>
