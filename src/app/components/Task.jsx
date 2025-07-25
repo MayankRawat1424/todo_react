@@ -39,7 +39,7 @@ const Task = ({ tasks, setTasks, deleteTask, completeTask }) => {
 
     return (
       <>
-        <div className="max-w-xl mx-auto p-6 bg-gray-100 mt-10 rounded-lg shadow">
+        <div className="max-w-xl mx-auto p-6 bg-gray-100 rounded-lg shadow">
           <ul className="space-y-2">{ListItems}</ul>
         </div>
       </>

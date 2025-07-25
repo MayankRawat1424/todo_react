@@ -1,4 +1,5 @@
 import React from "react";
+import { IoMdCreate } from "react-icons/io";
 
 const TaskList = ({ tasks }) => {
   if (!tasks || tasks.length === 0) {
@@ -8,15 +9,18 @@ const TaskList = ({ tasks }) => {
   }
   const MyTasks = tasks.map((task) => {
     return (
-      <li key={task.id}>
+      <li
+        key={task.id}
+        className="text-black bg-white shadow-md p-4 rounded-lg mb-2"
+      >
         <p>{task.title}</p>
       </li>
     );
   });
   return (
-    <div>
-      <h2>List</h2>
-      <ul>{MyTasks}</ul>
+    <div className="max-w-xl mx-auto p-6 bg-gray-100 rounded-lg shadow">
+      <h2 className="text-xl font-bold text-black">All Tasks</h2>
+      <ul className="my-4">{MyTasks}</ul>
     </div>
   );
 };

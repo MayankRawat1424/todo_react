@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-const CreateTask = ({ setTasks }) => {
+const CreateTask = ({ setTasks, setShowCreateTask }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   //   const [tasks, setTasks] = useState([]);
@@ -35,11 +35,12 @@ const CreateTask = ({ setTasks }) => {
       setTasks((prevTasks) => [...prevTasks, newTask]);
       setTitle("");
       setDescription("");
+      setShowCreateTask(false);
     }
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-gray-100 rounded-lg shadow">
+    <div className="max-w-xl w-124 mx-auto p-6 bg-gray-100 rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4 text-center text-black">
         What are we up to today?
       </h2>
@@ -69,12 +70,12 @@ const CreateTask = ({ setTasks }) => {
           >
             Description
           </label>
-          <input
+          <textarea
             type="text"
             id="TaskDescription"
             placeholder="Enter task description"
             value={description}
-            className="w-full p-2 border border-gray-300 rounded bg-white text-black"
+            className="w-full h-64 p-2 border border-gray-300 rounded bg-white text-black"
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
