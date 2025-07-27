@@ -1,15 +1,13 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { RxCross2 } from "react-icons/rx";
+import { TaskContext } from "../context/TaskContext";
 
-const CreateTask = ({ setTasks, setShowCreateTask }) => {
+const CreateTask = ({ setShow }) => {
+  const { addTask } = useContext(TaskContext);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  //   const [tasks, setTasks] = useState([]);
-
-  //   useEffect(() => {
-  //     console.log("Tasks:", tasks);
-  //   }, [tasks]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,26 +15,10 @@ const CreateTask = ({ setTasks, setShowCreateTask }) => {
     if (!title.trim() || !description.trim()) {
       alert("We need a title and description to create a task!");
     } else {
-      // if (!title.trim()) {
-      //   let date = new Date().toLocaleString();
-      //   let time = new Date().toLocaleTimeString();
-      //   setTitle(`Task ${time} :: ${date}`);
-      // }
-      // if (!description.trim()) {
-      //   setDescription(title);
-      // }
-      const newTask = {
-        id: crypto.randomUUID(),
-        title: title,
-        description: description,
-        completed: false,
-        date: new Date().toLocaleDateString(),
-      };
-
-      setTasks((prevTasks) => [...prevTasks, newTask]);
+      addTask(title, description, false);
       setTitle("");
       setDescription("");
-      setShowCreateTask(false);
+      setShow(false);
     }
   };
 
