@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TaskContext } from "../context/TaskContext";
 
-const TaskStats = ({ tasks }) => {
+const TaskStats = () => {
+  const { tasks } = useContext(TaskContext);
   let totaltasks = tasks.length;
   let completedTasks = tasks.filter((task) => task.completed).length;
   let pendingTasks = totaltasks - completedTasks;

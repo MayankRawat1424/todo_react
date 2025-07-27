@@ -1,10 +1,13 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { RxCross2 } from "react-icons/rx";
+import { TaskContext } from "../context/TaskContext";
 
-const EditTask = ({ setTasks, setShowEditTask }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const EditTask = ({ currentTask, setShow }) => {
+  const { editTask } = useContext(TaskContext);
+
+  const [title, setTitle] = useState(currentTask.title || "");
+  const [description, setDescription] = useState(currentTask.description || "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,18 +15,10 @@ const EditTask = ({ setTasks, setShowEditTask }) => {
     if (!title.trim() || !description.trim()) {
       alert("We need a title and description to create a task!");
     } else {
-      const newTask = {
-        id: crypto.randomUUID(),
-        title: title,
-        description: description,
-        completed: false,
-        date: new Date().toLocaleDateString(),
-      };
-
-      setTasks((prevTasks) => [...prevTasks, newTask]);
+      editTask(currentTask.id, title, description, false);
       setTitle("");
       setDescription("");
-      setShowEditTask(false);
+      setShow(false);
     }
   };
 
@@ -80,7 +75,7 @@ const EditTask = ({ setTasks, setShowEditTask }) => {
           type="submit"
           className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
         >
-          Create Task
+          Update Task
         </button>
       </form>
     </div>
