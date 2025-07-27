@@ -2,14 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
 
-const CreateTask = ({ setTasks, setShowCreateTask }) => {
+const EditTask = ({ setTasks, setShowEditTask }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  //   const [tasks, setTasks] = useState([]);
-
-  //   useEffect(() => {
-  //     console.log("Tasks:", tasks);
-  //   }, [tasks]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,14 +12,6 @@ const CreateTask = ({ setTasks, setShowCreateTask }) => {
     if (!title.trim() || !description.trim()) {
       alert("We need a title and description to create a task!");
     } else {
-      // if (!title.trim()) {
-      //   let date = new Date().toLocaleString();
-      //   let time = new Date().toLocaleTimeString();
-      //   setTitle(`Task ${time} :: ${date}`);
-      // }
-      // if (!description.trim()) {
-      //   setDescription(title);
-      // }
       const newTask = {
         id: crypto.randomUUID(),
         title: title,
@@ -36,7 +23,7 @@ const CreateTask = ({ setTasks, setShowCreateTask }) => {
       setTasks((prevTasks) => [...prevTasks, newTask]);
       setTitle("");
       setDescription("");
-      setShowCreateTask(false);
+      setShowEditTask(false);
     }
   };
 
@@ -44,11 +31,11 @@ const CreateTask = ({ setTasks, setShowCreateTask }) => {
     <div className="max-w-xl w-124 mx-auto p-6 bg-gray-100 rounded-lg shadow">
       <div className="flex justify-between items-start">
         <h2 className="text-2xl font-bold mb-4 items-start text-black">
-          What are we up to today?
+          Edit Your Task
         </h2>
         <button
           className="text-white bg-gray-600 w-8 aspect-square flex items-center justify-center hover:bg-gray-800 rounded-full transition hover:cursor-pointer"
-          onClick={() => setShowCreateTask(false)}
+          onClick={() => setShowEditTask(false)}
         >
           <RxCross2 className="w-6 h-6" />
         </button>
@@ -100,4 +87,4 @@ const CreateTask = ({ setTasks, setShowCreateTask }) => {
   );
 };
 
-export default CreateTask;
+export default EditTask;

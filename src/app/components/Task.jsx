@@ -2,7 +2,17 @@
 import React from "react";
 import { useState } from "react";
 
-const Task = ({ tasks, setTasks, deleteTask, completeTask }) => {
+const Task = ({
+  tasks,
+  setTasks,
+  deleteTask,
+  completeTask,
+  setShowEditTask,
+}) => {
+  // const handleUpdate = () => {
+
+  // }
+
   if (!tasks || tasks.length === 0) {
     return (
       <p className="text-center text-gray-500 mt-4">No Tasks to Display</p>
@@ -30,7 +40,12 @@ const Task = ({ tasks, setTasks, deleteTask, completeTask }) => {
           >
             Delete
           </button>
-          <button className="text-sm px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 hover:cursor-pointe ml-1">
+          <button
+            onClick={() => {
+              setShowEditTask(true);
+            }}
+            className="text-sm px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 hover:cursor-pointe ml-1"
+          >
             Edit
           </button>
         </li>

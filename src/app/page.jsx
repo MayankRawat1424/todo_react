@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import CreateTask from "./components/CreateTask";
 import Task from "./components/Task";
 import TaskStats from "./components/TaskStats";
 import TaskList from "./components/TaskList";
+import EditTask from "./components/EditTask";
 
 import { useState } from "react";
 
@@ -14,6 +15,7 @@ import { IoMdCreate } from "react-icons/io";
 export default function Home() {
   const [tasks, setTasks] = useState([]);
   const [showCreateTask, setShowCreateTask] = useState(false);
+  const [showEditTask, setShowEditTask] = useState(false);
 
   return (
     <>
@@ -28,6 +30,18 @@ export default function Home() {
               <CreateTask
                 setShowCreateTask={setShowCreateTask}
                 onClose={() => setShowCreate(false)}
+                setTasks={setTasks}
+                className=""
+              />
+            </div>
+          )}
+
+          {showEditTask && (
+            <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+              <EditTask
+                showEditTask={showEditTask}
+                setShowEditTask={setShowEditTask}
+                onClose={() => setShowEditTask(false)}
                 setTasks={setTasks}
                 className=""
               />
@@ -49,6 +63,7 @@ export default function Home() {
                 )
               )
             }
+            setShowEditTask={setShowEditTask}
           />
         </section>
 
